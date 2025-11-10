@@ -1,0 +1,9 @@
+﻿---
+- name: Install CloudWatch agent on EC2
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update system packages
+      apt: { update_cache: yes }
+    - name: Install CloudWatch agent
+      apt: { name: amazon-cloudwatch-agent, state: present }

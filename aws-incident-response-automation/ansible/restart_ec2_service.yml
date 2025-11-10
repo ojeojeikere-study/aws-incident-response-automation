@@ -1,0 +1,11 @@
+﻿---
+- name: Restart EC2 web service after alert
+  hosts: all
+  become: yes
+  tasks:
+    - name: Restart nginx service
+      service: { name: nginx, state: restarted }
+    - name: Verify service status
+      shell: systemctl status nginx
+      register: result
+    - debug: { var: result.stdout }
